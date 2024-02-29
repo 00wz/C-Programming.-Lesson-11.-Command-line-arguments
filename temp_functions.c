@@ -86,7 +86,11 @@ static void print_year_statistic()
 
 static void init_months()
 {
-    months = malloc(sizeof(Month_t)*MONTHS_COUNT);
+    if(months == NULL)
+    {
+        months = malloc(sizeof(Month_t)*MONTHS_COUNT);
+    }
+
     for (size_t i = 0; i < MONTHS_COUNT; i++)
     {
         months[i].max = -__INT_MAX__;
@@ -118,10 +122,7 @@ void input_file(char* name)
         exit(0);
     }
     
-    if(months == NULL)
-    {
-        init_months();
-    }
+    init_months();
 
     int Y, M, D, H, Min, T;
 
